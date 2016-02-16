@@ -26,7 +26,6 @@ describe("Airport", function() {
     expect(airport.planes).not.toContain(p1)
   });
 
-
   it("should raise an alert when the airport is full", function(){
     spyOn(window, 'alert');
     airport.capacity = 2
