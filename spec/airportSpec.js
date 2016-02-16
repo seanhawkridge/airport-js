@@ -2,7 +2,9 @@
 describe("Airport", function() {
 
   beforeEach(function(){
-    plane = new Airplane;
+    p1 = new Airplane;
+    p2 = new Airplane;
+    p3 = new Airplane;
     airport = new Airport;
   });
 
@@ -15,13 +17,23 @@ describe("Airport", function() {
   });
 
   it("should add a plane to its array", function() {
-    airport.land_plane(plane)
-    expect(airport.planes).toContain(plane)
+    airport.land_plane(p1)
+    expect(airport.planes).toContain(p1)
   });
 
   it("should remove a plane from its array", function() {
-    airport.send_plane(plane)
-    expect(airport.planes).not.toContain(plane)
+    airport.send_plane(p1)
+    expect(airport.planes).not.toContain(p1)
+  });
+
+
+  it("should raise an alert when the airport is full", function(){
+    spyOn(window, 'alert');
+    airport.capacity = 2
+    airport.land_plane(p1);
+    airport.land_plane(p2);
+    airport.land_plane(p3);
+    expect(window.alert).toHaveBeenCalledWith('airport is full');
   });
 
 });
